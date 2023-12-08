@@ -4,22 +4,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity">
     <data>
+        <variable name="score" type="String"/>
+        <variable name="time" type="String"/>
         <variable name="problem" type="String"/>
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
+            android:id="@+id/scoreView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="24sp"
+            android:text="@{score}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:textSize="24sp"
+            android:text="@{time}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
             android:id="@+id/problemTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="50dp"
-            android:textSize="24sp"
+            android:textSize="30sp"
             android:text="@{problem}"
-            app:layout_constraintEnd_toStartOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/scoreView" />
+
+        <TextView
+            android:id="@+id/currentAnswerView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="12dp"
+            android:text="* 나눗셈 시 소수점이하는 버립니다."
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/problemTextView" />
 
         <EditText
             android:id="@+id/answerEditText"
@@ -30,10 +63,10 @@
             android:layout_marginTop="32dp"
             android:layout_marginEnd="20dp"
             android:hint="답을 입력하세요."
-            android:inputType="number"
+            android:inputType="numberSigned"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/problemTextView" />
+            app:layout_constraintTop_toBottomOf="@id/currentAnswerView" />
 
         <Button
             android:id="@+id/checkButton"
@@ -44,6 +77,6 @@
             android:text="확인"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/answerEditText" />
+            app:layout_constraintTop_toBottomOf="@id/answerEditText" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
