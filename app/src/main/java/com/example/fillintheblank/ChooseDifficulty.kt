@@ -5,9 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import java.util.*
 
 class ChooseDifficulty : AppCompatActivity() {
     private lateinit var easyButton: Button
@@ -33,12 +30,11 @@ class ChooseDifficulty : AppCompatActivity() {
     }
 
     private fun clickBtn(view: View) {
-        var difficulty: Int
-        if (view == easyButton)
-            difficulty = 0
-        else if (view == normalButton)
-            difficulty = 1
-        else difficulty = 2
+        var difficulty: Int = when {
+            view == easyButton -> 0
+            view == normalButton -> 1
+            else -> 2
+        }
 
         val intent = Intent(this, MainActivity::class.java)
         intent.putExtra("난이도", difficulty)

@@ -44,7 +44,7 @@
             app:layout_constraintTop_toBottomOf="@id/scoreView" />
 
         <TextView
-            android:id="@+id/currentAnswerView"
+            android:id="@+id/additionalExplanationView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -66,7 +66,7 @@
             android:inputType="numberSigned"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/currentAnswerView" />
+            app:layout_constraintTop_toBottomOf="@id/additionalExplanationView" />
 
         <Button
             android:id="@+id/checkButton"

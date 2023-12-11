@@ -25,7 +25,7 @@
         android:text="EASY"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chooseDifficultyText" />
+        app:layout_constraintTop_toBottomOf="@id/chooseDifficultyText" />
 
 
     <Button
@@ -36,7 +36,7 @@
         android:text="NORMAL"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/easyButton" />
+        app:layout_constraintTop_toBottomOf="@id/easyButton" />
 
     <Button
         android:id="@+id/hardButton"
@@ -46,7 +46,7 @@
         android:text="HARD"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/normalButton" />
+        app:layout_constraintTop_toBottomOf="@id/normalButton" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,6 +11,8 @@ import java.util.Random
 
 class GameViewModel : ViewModel() {
     private var countDownTimer: CountDownTimer? = null
+
+    // 난이도 LiveData
     private val _difficulty = MutableLiveData<Int>(0)
     val difficulty: LiveData<Int> get() = _difficulty
     fun setDifficulty(value: Int) {
@@ -35,7 +37,7 @@ class GameViewModel : ViewModel() {
         _time.value = value
     }
 
-    // 게임 오버 유무
+    // 게임 오버 LiveData
     private val _gameOverCheck = MutableLiveData<Boolean>(false)
     val gameOverCheck: LiveData<Boolean> get() = _gameOverCheck
     fun setGameOverCheck(value: Boolean) {
@@ -43,7 +45,7 @@ class GameViewModel : ViewModel() {
     }
 
     init {
-        // 초기 값 설정 및 게임 초기화 로직 추가
+        // 게임 초기화
         initGame()
     }
     fun initGame() {
@@ -79,17 +81,10 @@ class GameViewModel : ViewModel() {
         }
     }
 
-    // 게임 종료 로직
-    private fun gameOver(activity: MainActivity) {
-        val intent = Intent(activity, ResultActivity::class.java)
-        intent.putExtra("점수", _score.value)
-        activity.startActivity(intent)
-        activity.finish()
-    }
     fun startTimer(initialTime: Long, activity: MainActivity) {
         countDownTimer = object : CountDownTimer(initialTime, 1) {
             override fun onTick(millisUntilFinished: Long) {
-                updateTime(millisUntilFinished)
+                _time.value = millisUntilFinished // 시간 갱신
             }
 
             override fun onFinish() {
@@ -98,7 +93,7 @@ class GameViewModel : ViewModel() {
                     "제한시간을 초과했습니다.",
                     Toast.LENGTH_SHORT
                 ).show()
-                setGameOverCheck(true)
+                setGameOverCheck(true) // 게임 오버
             }
         }.start()
     }
@@ -107,10 +102,6 @@ class GameViewModel : ViewModel() {
         countDownTimer?.cancel()
     }
 
-    // 시간 갱신 메소드
-    fun updateTime(remainingTime: Long) {
-        _time.value = remainingTime
-    }
 
     // 다음 문제 생성 로직
     private fun generateNewProblem(difficulty: Int?) {
@@ -158,6 +149,7 @@ class GameViewModel : ViewModel() {
         _problem.value = "$problemString = ___"
     }
 
+    // 식에 대한 정답 계산
     private fun calculateAnswer(numCount: Int, problem: ArrayList<Any>): Int {
         val priorityOperators = listOf("*", "/")
         val result = mutableListOf<Any>()
